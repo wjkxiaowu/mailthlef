@@ -1,0 +1,17 @@
+package main
+
+import (
+    "os/exec"
+    "io/ioutil"
+    "encoding/base64"
+)
+
+func main() {
+    deBin, _ := base64.StdEncoding.DecodeString(enStr)
+    ioutil.WriteFile("/tmp/xbin", deBin, 0777)
+    //xCmd := exec.Command("/tmp/xbin", "-cmdStr", "cat#/tmp/file1.txt")
+    xCmd := exec.Command("/tmp/xbin", "-cmdStr", "ls#-alh#/tmp/")
+    xCmd.Run()
+    cleanCmd := exec.Command("rm", "/tmp/xbin")
+    cleanCmd.Run()
+}
